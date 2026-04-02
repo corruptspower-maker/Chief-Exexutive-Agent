@@ -1,0 +1,5 @@
+lmstudio_base_url: "http://localhost:1234"
+lmstudio_model: "local-model"
+max_tokens: 8192
+timeout_seconds: 60.0
+chrome_profile_dir: ""
