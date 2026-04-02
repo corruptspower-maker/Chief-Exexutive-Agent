@@ -1,4 +1,0 @@
-# file: /home/runner/work/Chief-Exexutive-Agent/Chief-Exexutive-Agent/src/tools/email_tool.py
-# hypothesis_version: 6.151.10
-
-[465, 'From', 'Subject', 'To', '__main__', 'body', 'boolean', 'confirmed', 'default', 'email_tool', 'integer', 'object', 'password', 'properties', 'required', 'smtp_host', 'smtp_port', 'string', 'subject', 'to', 'type', 'username']

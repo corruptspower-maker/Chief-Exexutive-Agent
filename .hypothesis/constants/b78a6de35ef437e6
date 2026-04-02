@@ -1,4 +1,0 @@
-# file: /home/runner/work/Chief-Exexutive-Agent/Chief-Exexutive-Agent/src/tools/browser_tool.py
-# hypothesis_version: 6.151.10
-
-[30000, '.response', 'CHROME_PROFILE_DIR', 'Enter', '__main__', 'browser_tool', 'default', 'headless', 'input_selector', 'integer', 'object', 'prompt', 'properties', 'required', 'response_selector', 'string', 'textarea', 'timeout_ms', 'type', 'url', 'user_data_dir']
