@@ -1,0 +1,45 @@
+debug: false
+max_concurrent_tasks: 3
+user_data_dir: "user_data"
+
+safety:
+  command_whitelist:
+    - "echo"
+    - "dir"
+    - "ls"
+    - "pwd"
+    - "python"
+    - "pip"
+    - "uv"
+    - "git"
+    - "cat"
+    - "type"
+    - "find"
+    - "grep"
+  forbidden_imports:
+    - "os"
+    - "subprocess"
+    - "sys"
+    - "shutil"
+    - "ctypes"
+    - "winreg"
+    - "socket"
+  rate_limits:
+    shell_tool: 30
+    file_tool: 60
+    email_tool: 5
+    browser_tool: 10
+    python_tool: 20
+    web_search_tool: 20
+
+models:
+  lmstudio_base_url: "http://localhost:1234"
+  lmstudio_model: "local-model"
+  max_tokens: 8192
+  timeout_seconds: 60.0
+  chrome_profile_dir: ""
+
+escalation:
+  max_retries: 3
+  circuit_breaker_threshold: 5
+  circuit_breaker_reset_seconds: 60.0

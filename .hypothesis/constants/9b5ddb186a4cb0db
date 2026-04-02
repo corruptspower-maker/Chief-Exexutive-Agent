@@ -1,0 +1,4 @@
+# file: /home/runner/work/Chief-Exexutive-Agent/Chief-Exexutive-Agent/src/core/models.py
+# hypothesis_version: 6.151.10
+
+[0.0, '__main__', 'circuit_open', 'completed', 'dangerous', 'escalated', 'failed', 'high_risk', 'max_retries', 'moderate', 'parse_error', 'pending', 'planning', 'running', 'safe', 'skipped', 'user_request']

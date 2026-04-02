@@ -1,0 +1,4 @@
+# file: /home/runner/work/Chief-Exexutive-Agent/Chief-Exexutive-Agent/src/core/planner.py
+# hypothesis_version: 6.151.10
+
+[0.0, 0.2, '__main__', 'args', 'array', 'choices', 'confidence', 'content', 'description', 'items', 'max_tokens', 'message', 'messages', 'model', 'number', 'object', 'properties', 'reasoning', 'required', 'role', 'steps', 'string', 'system', 'temperature', 'tool_name', 'type', 'user']

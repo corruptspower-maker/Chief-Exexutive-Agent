@@ -1,0 +1,4 @@
+# file: /home/runner/work/Chief-Exexutive-Agent/Chief-Exexutive-Agent/src/safety/sandbox.py
+# hypothesis_version: 6.151.10
+
+['(\\s|$)', '.', '^', '__main__', 'command_whitelist', 'config', 'forbidden_imports', 'safety.yaml']
