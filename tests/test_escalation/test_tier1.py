@@ -1,12 +1,23 @@
 """Tests for Tier-1 escalation invocation."""
 from __future__ import annotations
 
+from unittest.mock import AsyncMock, MagicMock, patch
+
 import pytest
 
 from src.core.models import EscalationReason, EscalationRequest, EscalationTier
 from src.escalation.manager import CircuitBreaker, EscalationManager
 from src.escalation import tier1_vscode
 from src.safety.audit_log import AuditLog
+
+_FAKE_OUTPUT = b'{"action": "retry", "patch": "re-run step", "notes": "transient failure"}'
+
+
+def _mock_proc(stdout: bytes = _FAKE_OUTPUT, returncode: int = 0) -> MagicMock:
+    proc = MagicMock()
+    proc.returncode = returncode
+    proc.communicate = AsyncMock(return_value=(stdout, b""))
+    return proc
 
 
 @pytest.mark.asyncio
@@ -19,7 +30,8 @@ async def test_tier1_returns_response() -> None:
         reason=EscalationReason.MAX_RETRIES,
         context="tool failed",
     )
-    response = await tier1_vscode.run(request)
+    with patch("asyncio.create_subprocess_exec", return_value=_mock_proc()):
+        response = await tier1_vscode.run(request)
     assert response.tier == EscalationTier.TIER1_VSCODE
     assert response.confidence > 0
     assert response.solution
@@ -37,7 +49,8 @@ async def test_manager_invokes_tier1_on_failure() -> None:
         reason=EscalationReason.MAX_RETRIES,
         context="repeated failure",
     )
-    response = await manager.initiate(request, audit)
+    with patch("asyncio.create_subprocess_exec", return_value=_mock_proc()):
+        response = await manager.initiate(request, audit)
     assert response is not None
     assert response.tier == EscalationTier.TIER1_VSCODE
 

@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 import asyncio
+import sys
 from typing import Any
 
 import yaml
@@ -85,12 +86,20 @@ class ShellTool(BaseTool):
             command = kwargs["command"]
             args: list[str] = kwargs.get("args", [])
             timeout: float = float(kwargs.get("timeout", 30))
-            proc = await asyncio.create_subprocess_exec(
-                command,
-                *args,
-                stdout=asyncio.subprocess.PIPE,
-                stderr=asyncio.subprocess.PIPE,
-            )
+            full_cmd = " ".join([command] + [str(a) for a in args])
+            if sys.platform == "win32":
+                proc = await asyncio.create_subprocess_shell(
+                    full_cmd,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE,
+                )
+            else:
+                proc = await asyncio.create_subprocess_exec(
+                    command,
+                    *args,
+                    stdout=asyncio.subprocess.PIPE,
+                    stderr=asyncio.subprocess.PIPE,
+                )
             try:
                 stdout, stderr = await asyncio.wait_for(proc.communicate(), timeout=timeout)
             except asyncio.TimeoutError:
